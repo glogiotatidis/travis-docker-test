@@ -3,6 +3,8 @@ python:
   - "2.7"
 before_install:
  - sudo curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+install:
+  - pip install fig
 script:
   fig run web ./manage.py test 
 
