@@ -1,15 +1,8 @@
 language: python
 python:
   - "2.7"
-before_script:
-  - mysql -e 'create database oing character set utf8;'
-install:
-  - pip install -r requirements/base.txt
-  - pip install -r requirements/dev.txt
-  - pip install coveralls
-env:
-  - DEBUG=False SECRET_KEY='FOO' ALLOWED_HOSTS=localhost, DATABASE_URL=mysql://root@localhost/oing
+before_install:
+ - sudo curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 script:
-  flake8 && coverage run manage.py test
-after_success:
-  coveralls
+  fig run web ./manage.py test 
+
